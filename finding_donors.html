@@ -13105,7 +13105,8 @@ It is a ratio of true positives(words classified as spam, and which are actually
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong></p>
+<p><strong>Answer: </strong> This is a classification problem so I would go with K-Nearest Neighbors, Decision Trees and Gausian NB.</p>
+<p><strong>K_nearest Neighbors</strong></p>
 
 </div>
 </div>
@@ -13136,11 +13137,12 @@ In the code block below, you will need to implement the following:</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import two metrics from sklearn - fbeta_score and accuracy_score</span>
-
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">fbeta_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
 <span class="k">def</span> <span class="nf">train_predict</span><span class="p">(</span><span class="n">learner</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">):</span> 
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    inputs:</span>
@@ -13156,21 +13158,21 @@ In the code block below, you will need to implement the following:</p>
     
     <span class="c1"># TODO: Fit the learner to the training data using slicing with &#39;sample_size&#39; using .fit(training_features[:], training_labels[:])</span>
     <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span> <span class="c1"># Get start time</span>
-    <span class="n">learner</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">learner</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
     <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span> <span class="c1"># Get end time</span>
     
     <span class="c1"># TODO: Calculate the training time</span>
-    <span class="n">results</span><span class="p">[</span><span class="s1">&#39;train_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">results</span><span class="p">[</span><span class="s1">&#39;train_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span>
         
     <span class="c1"># TODO: Get the predictions on the test set(X_test),</span>
     <span class="c1">#       then get predictions on the first 300 training samples(X_train) using .predict()</span>
     <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span> <span class="c1"># Get start time</span>
-    <span class="n">predictions_test</span> <span class="o">=</span> <span class="bp">None</span>
-    <span class="n">predictions_train</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">predictions_test</span> <span class="o">=</span> <span class="n">learner</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    <span class="n">predictions_train</span> <span class="o">=</span> <span class="n">learner</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:</span><span class="mi">300</span><span class="p">])</span>
     <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span> <span class="c1"># Get end time</span>
     
     <span class="c1"># TODO: Calculate the total prediction time</span>
-    <span class="n">results</span><span class="p">[</span><span class="s1">&#39;pred_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">results</span><span class="p">[</span><span class="s1">&#39;pred_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span>
             
     <span class="c1"># TODO: Compute accuracy on the first 300 training samples which is y_train[:300]</span>
     <span class="n">results</span><span class="p">[</span><span class="s1">&#39;acc_train&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
